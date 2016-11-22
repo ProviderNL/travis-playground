@@ -8,9 +8,9 @@ RUN yum -y install epel-release
 RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-6.rpm
 RUN yum -y install yum-utils
 
-ENV PHP_VERSION=70
+ENV PHP_VERSION=<%= @phpversion %>
 
-EXPOSE 8000
+EXPOSE 80
 
 RUN yum-config-manager --enable remi-php${PHP_VERSION}
 RUN yum -y install php${PHP_VERSION} \
@@ -31,8 +31,8 @@ RUN yum -y install php${PHP_VERSION} \
 # Create symlinks
 RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php && \
     ln -s /usr/bin/php${PHP_VERSION}-pear /usr/bin/pear && \
-    ln -s /usr/bin/php${PHP_VERSION}-phar /usr/bin/phar && \
-    
+    ln -s /usr/bin/php${PHP_VERSION}-phar /usr/bin/phar
+
 COPY /resources/phpinfo.php /
 
-ENTRYPOINT php -S localhost:8000 -t /phpinfo.php
+ENTRYPOINT php -S localhost:80 -t /phpinfo.php
