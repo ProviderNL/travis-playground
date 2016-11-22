@@ -32,9 +32,7 @@ RUN yum -y install php${PHP_VERSION} \
 RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php && \
     ln -s /usr/bin/php${PHP_VERSION}-pear /usr/bin/pear && \
     ln -s /usr/bin/php${PHP_VERSION}-phar /usr/bin/phar && \
-    rm /usr/sbin/sendmail && \
-    ln -s /usr/sbin/sendmail.ssmtp /usr/sbin/sendmail
-
+    
 COPY /resources/phpinfo.php /
 
 ENTRYPOINT php -S localhost:8000 -t /phpinfo.php
