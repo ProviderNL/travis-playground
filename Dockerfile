@@ -10,6 +10,8 @@ RUN yum -y install yum-utils
 
 ENV PHP_VERSION=70
 
+EXPOSE 8000
+
 RUN yum-config-manager --enable remi-php${PHP_VERSION}
 RUN yum -y install php${PHP_VERSION} \
       php${PHP_VERSION}-php-mysqlnd \
