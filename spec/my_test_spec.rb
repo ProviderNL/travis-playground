@@ -5,7 +5,8 @@ require 'dockerspec/infrataster'
 
 describe 'multibuild php test' do
   describe docker_build('.') do
-    # [...]
+    it { should have_expose '8000' }
+
     describe docker_run(described_image) do
       describe server(described_container) do # Infrataster
 
