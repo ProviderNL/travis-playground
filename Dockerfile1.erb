@@ -35,4 +35,4 @@ RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php && \
 
 COPY /resources/phpinfo.php /
 
-ENTRYPOINT php -S localhost:80 -t /phpinfo.php
+ENTRYPOINT php -S 0.0.0.0:80 -t /phpinfo.php
