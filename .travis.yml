@@ -13,7 +13,7 @@ script: travis_retry bundle exec rspec
 
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  - if [ "$TRAVIS_BRANCH" == "feature/docker-multiple-images" ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" dockerrepo.stack.provider.nl:5000;
     docker push test-php-$PHP_VERSION;
     fi
