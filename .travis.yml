@@ -1,17 +1,15 @@
 language: ruby
 cache: bundler
-
 sudo: required
-
 services: docker
-
 env:
+  matrix:
   - PHP_VERSION=56
   - PHP_VERSION=70
-
+  global:
+  - secure: QYU9xQTGK915ZCNuf/c0lYIsL322iuoyGDi46Uc8qW9bNpxo954kiRUqTeT4CA/SQ9zgK5SS7E+yeftyhNX+5bk2iQSUSze+UnXh8dhrtB9zwl7Jo8tj/6rjEDx1TPmcuyxiGb0PCSH0eOT1YmQUYVK4LdrIkYOrsif+pt6hrkBUNbBKW37ltC43A6+t8U3mWx6wD1IAFsdXWuXYzt667Ck4M93zu0PZf0NttLQBTOUYdgUrnUdJlwCgCR+tnQgqfLq+hLvmCUIj8bPRnF65SZByHivk5GeeX2est8Y35fL7VbjBOf1eoKjaDgxch54FXrYzTtMYFDrPnD9sagNkN6rqYdMIKSey7P1czkpcoC6IfIWyqZiiWu4c7iAsKGYRkZHjnb+rwmFsMyGiDuTUyVi1jNnR+ezAoS7+8EOKE1BRbW+MDku1mJUSUF98wUwaRTbGJ3g6BtrL5m+JIqXH+DOTTl3xVpAKkUgBT3B2G9o2DJ5ynmykhwJ2Yp8IbfYieXyTrDi79s1q4qKzUokj+4M6diWyA20bOxObWXRcCciNROF0nojkguqsiRZIJDx/7BsXjoAUbnpmwdMQbzSTSB43m6aWHtZ2lX1HZLf+OvfL7rUjOD/VrbcrHFEdIVY5eRzuE/fQ/t7HIl1HjestPj6bKIZGuN9vR7TtmjjbKK8=
+  - secure: LskMbe0N+xAfwuKtMZHWcDpHF8q1oWpoMZ6z3wFEPDwAtOTsc/09photr5iqRP6dmMQUAtWL66u9zqeVHUbCke6T+MD8oRcWp6uB/x7VsGj8euQiu6Enkh3KyyUQgeAjkoRegjSu/9Y/ER++6Baa/WnSUZ/u+Ta/Pm1hGuQxcF2uqzYgeKJljeB8FB5z9rFjAdKTw9Du8vH/7aO34EWBq/2eeGweNynDJRHjHzrAj6R34bwAlFDWjobMUG7Wca6FQbF+vSvrPEmtj4hAX6w4DNTM4vt+dPKvEELw2l7GVUivuHYf4HjUdWBLYD55KDGDRErAm4V3wqrOtn45da/5ckJei9ZA/vJGyvXCPvlER2ExzxXfKnA8eRhVL9XSS1pbMS4+E85CcBQvOwn6SBL+TLw+qwyFctwnokVGq9tLjMJ3lDjIE2CvhzLqEcEth5HnPT84lSrgGKhdz8CldC7jqqV9r6w5YdWklK3X00aiAiwRVEdmQvtdLx62kAZBz+l4PYrX16b3pvsSigPhlAes/C88zRUSvriaou+Wchje8FxUfl1+bkv8nUjSpoa6JeaiON0mOa+0KytfyaaXUc+Q6l3rut0jA93nh2s16dsMtljl/3LWhpq/rcriB85CciGZAbzSPuwTOFHfWGn8NHq9Ad+PJ8Iex/vJTUbncLl4+oE=
 script: echo test
-
-
 after_success:
-    docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD dockerrepo.stack.provider.nl:5000;
-    docker push dockerrepo.stack.provider.nl/test-php-$PHP_VERSION;
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS dockerrepo.stack.provider.nl:5000
+  - docker push dockerrepo.stack.provider.nl/test-php-$PHP_VERSION;
